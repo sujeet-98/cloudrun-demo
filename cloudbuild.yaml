@@ -1,7 +1,7 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '/asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo:$COMMIT_SHA', '.']
+  args: ['build', '-t', '/asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloudrun-demo:$COMMIT_SHA', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo:$COMMIT_SHA']
@@ -12,6 +12,7 @@ steps:
     - 'beta'
     - 'run'
     - 'deploy'
+    - 'cloudrun-demo'
     - '--image'
     - 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo:$COMMIT_SHA'
     - '--region'
