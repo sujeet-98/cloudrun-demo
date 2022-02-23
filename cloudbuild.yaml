@@ -1,10 +1,10 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '/asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloudrun-demo:$COMMIT_SHA', '.']
+  args: ['build', '-t', '/asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloud-runtest:$COMMIT_SHA', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloudrun-demo:$COMMIT_SHA']
+  args: ['push', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloud-runtest:$COMMIT_SHA']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
@@ -12,9 +12,9 @@ steps:
     - 'beta'
     - 'run'
     - 'deploy'
-    - 'cloudrun-demo'
+    - 'cloud-test'
     - '--image'
-    - 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloudrun-demo:$COMMIT_SHA'
+    - 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloud-runtest:$COMMIT_SHA'
     - '--region'
     - 'asia-south1'
     - '--platform'
@@ -25,4 +25,4 @@ steps:
     - '100'
     - '--allow-unauthenticated'
 images:
-- 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloudrun-demo'
+- 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloudruntest-demo/cloud-runtest'
